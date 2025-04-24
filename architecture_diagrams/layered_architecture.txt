@@ -1,0 +1,41 @@
+# Layered Architecture Diagram for Data Drift Detector
+
+## Diagram Title: "PySpark Data Drift Detector - Layered Architecture"
+
+## Design Instructions:
+- Create a layered architecture with 5 distinct horizontal layers
+- Use gradient colors for each layer (suggested: blue to green to orange to purple)
+- Include connecting arrows between layers (downward flow)
+- Add a small Delta Lake logo near the Data Layer components
+
+## Layer Structure (top to bottom):
+
+1. USER INTERFACE LAYER (Light Blue) 
+   - Components: Config Files | Command Line Interface | Jupyter Notebooks | Web Dashboard
+   - Description: "Multiple interfaces for configuring and initiating drift detection"
+
+2. ORCHESTRATION LAYER (Teal)
+   - Main Component: DataDriftDetector (central, larger box)
+   - Sub-components: Configuration Management | Version Control | Adaptive Thresholds | Results Formatter
+   - Description: "Central orchestration of the drift detection process"
+
+3. DATA LAYER (Green)
+   - Components: DataLoader | Delta Lake Time Travel | Schema Analyzer | Column Analyzer
+   - Description: "Data access and preprocessing with Delta Lake time travel capability"
+
+4. ANALYSIS LAYER (Orange)
+   - Components (2x4 grid):
+     * Row 1: Numerical Analyzer | Categorical Analyzer | Distribution Analyzer | Correlation Analyzer
+     * Row 2: Group Analyzer | Rare Event Analyzer | Feature Importance | Outlier Detection
+   - Description: "Comprehensive multi-dimensional analysis modules"
+
+5. OUTPUT LAYER (Purple)
+   - Components: Drift Assessment & Summary | Recommendations Engine | Historical Results (Delta Tables)
+   - Description: "Actionable insights and historical tracking"
+
+## Key Features to Highlight (add callout boxes):
+1. "Delta Lake Time Travel for Precise Version Comparison"
+2. "Modular Analysis Framework for Easy Extensibility"
+3. "Adaptive Thresholds Based on Data Characteristics"
+4. "Multi-dimensional Drift Analysis (statistical, distributional, correlational)"
+5. "Historical Tracking of Drift Patterns Over Time" 

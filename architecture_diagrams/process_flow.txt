@@ -1,0 +1,48 @@
+# Process Flow Architecture Diagram for Data Drift Detector
+
+## Diagram Title: "PySpark Data Drift Detector - Process Flow"
+
+## Design Instructions:
+- Create a horizontal flow diagram with 6 sequential stages
+- Use distinct colors for each stage (gradient from blue to purple)
+- Include connecting arrows between stages (horizontal flow)
+- Add small icons for each process step
+
+## Process Stages (left to right):
+
+1. CONFIGURATION & SETUP (Light Blue)
+   - Steps: Config File Processing | Threshold Determination | Column Selection | Validation
+   - Description: "Initialize system with configuration parameters"
+   - Icon: Gear/settings
+
+2. DATA ACQUISITION (Teal Blue)
+   - Steps: Reference Data Loading | Current Data Loading | Schema Validation | Sampling
+   - Description: "Load data versions from Delta Lake"
+   - Icon: Database/table
+
+3. DATA PREPARATION (Green)
+   - Steps: Column Type Inference | Schema Drift Analysis | Batch Creation
+   - Description: "Analyze metadata and prepare for processing"
+   - Icon: Transform/process
+
+4. MULTI-DIMENSIONAL ANALYSIS (Yellow-Green)
+   - Steps: Statistical Analysis | Distribution Analysis | Correlation Analysis | Group Analysis | Feature Importance
+   - Description: "Apply specialized analyzers to detect drift"
+   - Icon: Magnifying glass/analysis
+
+5. RESULTS AGGREGATION (Orange)
+   - Steps: Drift Detection | Severity Assessment | Result Formatting | Recommendations
+   - Description: "Combine results and determine significance"
+   - Icon: Combine/aggregate
+
+6. OUTPUT & STORAGE (Purple)
+   - Steps: Results Saving | Visualization | Historical Integration
+   - Description: "Save results and prepare for presentation"
+   - Icon: Save/database
+
+## Key Process Characteristics (add callout boxes):
+1. "Parallel Analysis: Multiple analyzers run concurrently"
+2. "Adaptive Processing: Analysis depth based on configuration"
+3. "Scalable: Batch processing for large datasets"
+4. "Error Handling: Graceful recovery from analysis failures"
+5. "Delta Lake Integration: Time travel for version comparison" 

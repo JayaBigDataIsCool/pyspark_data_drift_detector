@@ -1,0 +1,72 @@
+# Usage Examples
+
+### Basic Usage
+```python
+from main import DataDriftDetector
+
+# Run drift detection on a table
+results = DataDriftDetector.detect_drift("catalog.schema.customer_transactions")
+
+# View top drifted columns
+results.orderBy("drift_score", ascending=False).show()
+```
+
+### Save Results to Delta Table
+```python
+# Run and save results
+DataDriftDetector.detect_drift(
+    "catalog.schema.customer_transactions",
+    "dbfs:/path/to/drift_results"
+)
+```
+
+### Read Drift Results
+```python
+from pyspark.sql import SparkSession
+
+# Read previously saved results
+spark = SparkSession.builder.getOrCreate()
+results = spark.read.format("delta").load("dbfs:/path/to/drift_results")
+
+# Get drift summary
+from result_handler import ResultHandler
+summary = ResultHandler.get_drift_summary(results)
+print(f"Total columns analyzed: {summary['total_columns_analyzed']}")
+print(f"Average drift score: {summary['average_drift_score']:.3f}")
+print("Top drifted columns:")
+for col in summary['top_drifted_columns']:
+    print(f"  - {col['column']} (score: {col['drift_score']:.3f}, severity: {col['severity']})")
+```
+
+{
+  "table_path": "dbfs:/delta/customer_transactions",
+  "reference_version": 1,
+  "current_version": 2,
+  "output_table_path": "dbfs:/delta/drift_detection_results",
+  
+  "analysis_profile": "standard",
+  "columns_to_analyze": [],
+  "columns_to_exclude": ["row_id", "created_at", "updated_at"],
+  "custom_column_types": {
+    "customer_id": "categorical",
+    "transaction_date": "timestamp"
+  },
+  "dimension_columns": ["region", "product_category"],
+  "custom_thresholds": {
+    "global": {
+      "numerical": {
+        "mean_diff_perc": 0.05,
+        "median_diff_perc": 0.07
+      },
+      "categorical": {
+        "category_shift_score": 0.15
+      }
+    },
+    "grouped": {
+      "numerical": {
+        "mean_diff_perc": 0.12
+      }
+    }
+  },
+  "relative_error_quantile": 0.01
+} 

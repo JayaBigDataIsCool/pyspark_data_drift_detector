@@ -1,0 +1,75 @@
+# Hexagonal Architecture Diagram for Data Drift Detector
+
+## Diagram Title: "PySpark Data Drift Detector - Hexagonal Component Architecture"
+
+## Design Instructions:
+- Create a hexagon-based architecture with color-coding by function
+- Use a central hexagon with surrounding rings of components
+- Connect components with arrowed lines showing data/process flow
+- Add small icons in each hexagon representing its function
+
+## Component Structure:
+
+### Central Core (Gold Hexagon):
+- "Data Drift Detector" - Main orchestration component
+- Add tagline: "Comprehensive drift detection for Delta Lake tables"
+
+### Inner Ring (Blue Hexagons - connect directly to core):
+1. "Configuration Manager" - Handles config files, thresholds, profiles
+   - Icon: Gear/settings
+   - Connect to: Core, Column Type Inference, Analysis components
+
+2. "Delta Table Interface" - Manages data loading and time travel 
+   - Icon: Database/table
+   - Connect to: Core, Column Type Inference
+
+3. "Column Type Inference" - Determines column types for analysis
+   - Icon: Columns/categorization
+   - Connect to: Core, Analysis components
+
+4. "Schema Evolution Analyzer" - Detects schema changes
+   - Icon: Schema/structure
+   - Connect to: Core, Results Processor
+
+5. "Results Processor" - Aggregates analysis results
+   - Icon: Report/document
+   - Connect to: Core, Output components
+
+### Outer Ring (Green Hexagons - connect to appropriate inner components):
+1. "Numerical Analysis" - Statistical analysis for numerical columns
+   - Connect to: Column Type Inference, Results Processor
+
+2. "Categorical Analysis" - Distribution analysis for categorical columns
+   - Connect to: Column Type Inference, Results Processor
+
+3. "Correlation Analysis" - Detects changes in relationships between columns
+   - Connect to: Column Type Inference, Results Processor
+
+4. "Group-Level Analysis" - Analyzes drift within categorical segments
+   - Connect to: Column Type Inference, Results Processor
+
+5. "Distribution Analysis" - Focused on distribution shape, quantiles
+   - Connect to: Column Type Inference, Results Processor
+
+6. "Rare Event Detection" - Identifies changes in rare categories
+   - Connect to: Column Type Inference, Results Processor
+
+7. "Feature Importance" - Analyzes predictive power changes
+   - Connect to: Column Type Inference, Results Processor
+
+### Output Components (Purple Hexagons - connect to Results Processor):
+1. "Drift Assessment" - Summary of detected drift
+   - Icon: Gauge/meter
+
+2. "Recommendation Engine" - Actionable next steps
+   - Icon: Lightbulb/advice
+
+3. "Historical Tracking" - Storage of results for trend analysis
+   - Icon: Timeline/history
+
+## Key Features to Highlight (add callout boxes around the diagram):
+1. "Modular Design: Easy to extend with new analyzers"
+2. "Comprehensive Analysis: Multiple dimensions of data drift"
+3. "Delta Lake Integration: Precise version comparison"
+4. "Actionable Insights: Not just detection, but recommendations"
+5. "Scalable Architecture: Handles tables with billions of rows" 
